@@ -6,13 +6,9 @@ def total_cash(sum)
   sum[:admin][:total_cash]
 end
 
-# def add_or_remove_cash(total_cash, add_cash)
-#   total_cash[:admin][:total_cash] += (add_cash)
-# end
-#
-# def add_or_remove_cash(total_cash, remove_cash)
-#   total_cash[:admin][:total_cash] -= (remove_cash)
-# end
+def add_or_remove_cash(pet_shop, amount)
+  pet_shop[:admin][:total_cash] += amount
+end
 
 def pets_sold(shop)
   return shop[:admin][:pets_sold]
@@ -35,28 +31,23 @@ def pets_by_breed(shop, breed)
   end
   return total
 end
-#help from Yang, though I think I get this now.
 
-def find_pet_by_name(shop, names)
-  for animal in shop[:pets]
-    if (names == animal[:name])
-      return animal
-    end
+def find_pet_by_name(shop, name)
+  match = nil
+  for pet in shop[:pets]
+    match = pet if(pet[:name] == name)
   end
-  #thought that the above would work for test_find_pet_by_name__returns_nil too but didn't :(
+  return match
+end
 
-# def remove_pet_name(shop, names)
-#   for animal in shop[:pets]
-#     if (names == animal[:name])
-#       return animal.delete()
-#     end
-#   end
-# end
-#this doesn't work. stumped.
+def remove_pet_by_name(pet_shop, pet_name)
+  pet_to_delete = find_pet_by_name(pet_shop, pet_name)
+  pet_shop[:pets].delete(pet_to_delete)
+end
 
-# def add_pet_to_stock(shop, new_pet)
-# shop[:pets].push(new_pet)
-# end
+def add_pet_to_stock(shop, pet)
+  shop[:pets].push(pet)
+end
 
 
 
